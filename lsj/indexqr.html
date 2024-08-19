@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>老司机浏览器 | LaoSiJi.App</title>
+  <script type="text/javascript" src="qrcode.min.js"></script>
+  <style>
+
+    ul, li {margin: 0;padding: 0;list-style: none;}
+    .tab:after{content: '';display:block;clear:both;}
+    a{text-decoration: none;}
+    /*!*手机界面*!*/
+    @media screen and (max-width: 1200px){
+      body{min-width:100vw;min-height:100vh;margin:0;padding: 0;display: flex;justify-content: center;align-items: center; background-image: url("./image/bg2.jpg");background-repeat: repeat;overflow-x:hidden;}
+      .page{display: flex;flex-direction: column;justify-content: center;align-items: center}
+      .tab{position:fixed;top:1%;max-width:1200px;width: 80%;height: 64px;cursor: pointer;
+        border-bottom: 4px solid #0045d1;z-index: 3000;color: #ffffff;display:flex;justify-content: space-between;
+        font-weight: bold;font-size: 1.4em;background:black;border-radius:16px 16px 0 0;}
+      .tab .active{background-color: #0045d1;display: flex;justify-content: center;align-items: center;color: white;height: 64px;border-radius: 16px 16px 0 0}
+      .tab-logo{width: 42px;height: auto;margin-right: 8px}
+      #appTab,#tvTab,#movieTab{display: flex;justify-content: center;align-items: center;flex: 1;cursor: pointer;color: white;user-select: none;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+      .content{width: 100%;display: flex;justify-content: center;align-items:center;flex-direction:column;}
+      .content li{width:100%;position:absolute;display: none;}
+      .content .current{display: flex;align-items: center;justify-content: center;flex-direction: column;top:140px;position: absolute;scroll-margin-top:140px}
+      .title{display: flex;align-items: center;justify-content: center;max-width: 1200px;width: 100%;user-select: none}
+      .btn-list{width: 100%;display: flex;min-width:680px;flex-direction: column;align-items: center;justify-content: center;margin:24px 0;}
+      .btn-item{display: flex;align-items: center;justify-content:center;font-size: 2.6em;font-weight: bold;color:
+              white;background: #0045d1;border-radius: 16px;width: 80%;line-height: 20%;margin:6px 0;cursor: pointer;user-select: none}
+      .btn-item>img{width: 42px;height: auto;margin-right: 8px}
+      .info{color: white;font-size: 1em;user-select: none}
+      .link{color: white;font-size: 1.2em;text-align: center}
+      .image{display: flex;justify-content: center;margin:24px 0;width:80%;height: auto;}
+      .pc{display: none;}
+      .phone{width:100%;height: auto;}
+      .levitate{display: none;}
+    }
+    /* !*PC界面*!*/
+    @media screen and (min-width: 1200px){
+      body{min-width:100vw;min-height:100vh;margin:0;padding: 0;display: flex;justify-content: center;align-items: center;
+        background-image: url("./image/bg2.jpg");background-size: 50%  50%;background-repeat: repeat;overflow-x:hidden }
+      .page{width:1200px;display: flex;flex-direction: column;justify-content: center;align-items: center}
+      .tab{position:fixed;top:1%;max-width:1200px;width: 80%;height: 48px;cursor: pointer;border-bottom: 4px solid #0045d1;z-index: 3000;color: #ffffff;display:flex;justify-content: space-between;font-weight: bold;font-size: 1.4em;background:black;border-radius:16px 16px 0 0;}
+      .tab .active{background-color: #0045d1;display: flex;justify-content: center;align-items: center;color: white;height: 48px;border-radius: 16px 16px 0 0}
+      .tab-logo{width: 32px;height: auto;margin-right: 8px}
+      #appTab,#tvTab,#movieTab{display: flex;justify-content: center;align-items: center;flex: 1;cursor: pointer;color: white;user-select: none;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;}
+      .content{width: 100%;display: flex;justify-content: center;align-items:center;flex-direction:column;}
+      .content li{width:100%;position:absolute;display: none;}
+      .content .current{display: flex;align-items: center;justify-content: center;flex-direction: column;position:absolute;top:140px;scroll-margin-top:140px}
+      .title{display: flex;align-items: center;justify-content: center;max-width: 1200px;width: 100%;user-select: none}
+      .btn-list{width: 80%;display: flex;justify-content: space-between;max-width:1200px;}
+      .btn-item{display: flex;align-items: center;justify-content:center;font-size: 1.6em;font-weight: bold;color:
+              white;background: #0045d1;border-radius: 16px;width: 32%;line-height: 10%;margin:24px 0;cursor: pointer;user-select: none}
+      .btn-item>img{width: 32px;height: auto;margin-right: 8px}
+      .info{color: white;font-size: 1em;user-select: none}
+      .link{color: white;font-size: 1.2em;text-align: center}
+      .image{display: flex;justify-content: center;margin:24px 0;}
+      .phone{display: none;}
+      .title{color: white;font-size: 3.8em}
+      .levitate{position:fixed;right:5%;bottom:5%;display:flex;justify-content:center;align-items:center;flex-direction:column;user-select: none;text-align:center;}
+      .qrimg>img{display:none;}
+      .levitate:hover .qrimg>img{opacity:1;display:block}
+    }
+
+  </style>
+  <link rel="shortcut icon" href="/logo/favicon.ico" type="image/x-icon" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NFRGSYT5DY"></script>
+  <!--邀请码-->
+  <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/clipboard.js/2.0.10/clipboard.min.js" type="application/javascript"></script>
+  <!--<script src="https://unpkg.com/vconsole@latest/dist/vconsole.min.js"></script>-->
+</head>
+<body onload="rFunction()">
+<div class="page">
+  <div class="tab">
+    <a href="#TV" id="tvTab" class="active">
+      <img class="tab-logo" referrerpolicy="no-referrer" src="./image/tv-logo.png" local="tv-logo.png" alt=""/>
+      电视 TV
+    </a>
+    <a href="#Movie" id="movieTab">
+      <img class="tab-logo" referrerpolicy="no-referrer" src="./image/phone-logo.png" local="tv-logo.png" alt=""/>
+      影视 APP
+    </a>
+  </div>
+  <ul class="content">
+
+    <li name="TV" id="TV" class="current">
+      <div class="title" style="display: flex;justify-content: center">
+        <img style="width: 80%" src="./image/tvtext.png" alt="">
+      </div>
+      <a style="color: white;border-bottom: white 1px solid;user-select: none" target="_blank"
+         href="https://www.baidu.com/s?ie=utf-8&wd=%E6%80%8E%E4%B9%88%E5%AE%89%E8%A3%85apk%E5%88%B0%E7%94%B5%E8%A7%86">下载到U盘后，再插入电视进行安装>>
+      </a>
+      <div class="btn-list">
+        <a class="btn-item" target="_blank" href="/d/leanback-java-armeabi_v7a_v229_20240313.apk">
+          <img style="user-select:none;" referrerpolicy="no-referrer" src="./image/tv-logo.png" local="./image/tv-logo.png" alt=""/>
+          <p>线路一下载</p>
+        </a>
+        <a class="btn-item" target="_blank" href="https://154.88.15.99/d/leanback-java-armeabi_v7a_v229_20240313.apk">
+          <img style="margin:0 8px;user-select:none;" referrerpolicy="no-referrer" src="./image/tv-logo.png" local="./image/tv-logo.png" alt=""/>
+          <p>线路二下载</p>
+        </a>
+        <a class="btn-item" target="_blank" href="https://xindizhi.github.io/lsj/d/leanback-java-armeabi_v7a_v229_20240313.apk">
+          <img style="user-select:none;" referrerpolicy="no-referrer" src="./image/tv-logo.png" local="./image/tv-logo.png" alt=""/>
+          <p>海外下载</p>
+        </a>
+      </div>
+      <div class="info">
+        V229 | 24MB | 2024-03-13
+      </div>
+      <div class="image">
+        <img class="pc" src="./image/phonep32.png" alt="">
+        <img class="phone"  src="./image/phonep33.png" alt="">
+      </div>
+      <div class="link">
+        <div style="user-select: none">免费科学上网，视频影视免费看</div>
+        <a href="https://at.umtrack.com/K5nObC?cid=483" target="_blank" style="color:yellow;text-decoration:none;user-select: none">更多APP推荐&gt;&gt;</a>
+      </div>
+    </li>
+    <li name="Movie" id="Movie">
+      <div class="title" style="display: flex;justify-content: center">
+        <img style="width: 80%" src="./image/padt2.png" alt="">
+      </div>
+      <div class="btn-list">
+        <a class="btn-item" target="_blank" href="/d/mobile-java-arm64_v8a_v229_20240314.apk" >
+          <img style="user-select:none;" referrerpolicy="no-referrer" src="./image/a-logo.png" local="./image/a-logo.png" alt=""/>
+          <p>线路一下载</p>
+        </a>
+        <a class="btn-item" target="_blank" href="https://154.88.15.99/d/mobile-java-arm64_v8a_v229_20240314.apk" >
+          <img style="margin:0 8px;user-select:none;" referrerpolicy="no-referrer" src="./image/a-logo.png" local="./image/a-logo.png" alt=""/>
+          <p>线路二下载</p>
+        </a>
+        <a class="btn-item" target="_blank" href="https://xindizhi.github.io/lsj/d/mobile-java-arm64_v8a_v229_20240314.apk" >
+          <img style="user-select:none;" referrerpolicy="no-referrer" src="./image/a-logo.png" local="./image/a-logo.png" alt=""/>
+          <p>海外下载</p>
+        </a>
+      </div>
+      <div class="info">
+        v229 | 29MB | 2024-03-14
+      </div>
+      <div class="image">
+        <img class="pc"  src="./image/phonep30.png" alt="">
+        <img class="phone"  src="./image/phone31.png" alt="">
+      </div>
+      <div class="link">
+        <div style="user-select: none">免费科学上网，视频影视免费看</div>
+        <a href="https://at.umtrack.com/K5nObC?cid=483" target="_blank" style="color:yellow;text-decoration:none;user-select: none">更多APP推荐&gt;&gt;</a>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="levitate" style="background:#0045d1;padding:8px 16px;color:white;font-weight:12px;border-radius:8px;cur: pointer;width:120px">
+ 
+  <div class="qrimg" style="display:flex;flex-direction:column">
+      <input id="text" type="text" value=" " style="width:0px;height:0px;opacity:0" />
+      <div id="qrcode" class="qrimg" style="width:120px; height:140px; display:flex;justify-content:center;align-items:center;" />
+  </div>    
+  扫码打开本站
+</div>
+
+
+
+</body>
+<script type="text/javascript">
+ var path = document.getElementById("text").value = window.location.href
+  //选项卡 begin
+  var tab = document.getElementsByClassName('tab')[0]
+  var tabCart = tab.getElementsByTagName('a')
+  var content = document.getElementsByClassName('content')[0]
+  var contentCart = content.getElementsByTagName('li')
+
+
+
+  tab.addEventListener('click',function(e){
+    console.log(tabCart.length)
+    var index = '1'
+    // 找到点击项的索引值
+    for(var i=0;i<tabCart.length;i++){
+      if(e.target==tabCart[i]){
+        index = i
+      }
+    }
+    // 给点击项加上active类
+    tabCart[index].classList.add("active")
+    // 去除其他选项上的active类
+    for(var i=0;i<tabCart.length;i++){
+      if(tabCart[i] != tabCart[index]){
+        tabCart[i].classList.remove("active")
+        console.log(1)
+      }
+    }
+    // 给点击项相应的内容加上current类
+    contentCart[index].classList.add("current")
+    // 去除其他选项上的current类
+    for(var i=0;i<contentCart.length;i++){
+      if(contentCart[i] != contentCart[index]){
+        contentCart[i].classList.remove("current")
+
+      }
+    }
+  })
+  window.onload=function(){
+    rFunction();
+  }
+
+  function rFunction(){
+    var path = window.location.href;
+    var result = path.slice(-3)
+
+
+    if(result === 'vie'){
+      document.getElementById("movieTab").classList.add("active");
+      document.getElementById("tvTab").classList.remove("active");
+      document.getElementById("Movie").classList.add("current");
+      document.getElementById("TV").classList.remove("current");
+    } else {
+      document.getElementById("tvTab").classList.add("active");
+      document.getElementById("Movie").classList.remove("active");
+      document.getElementById("TV").classList.add("current");
+      document.getElementById("movieTab").classList.remove("current");
+    }
+    // https://lsj24.top/#TV
+  }
+
+
+
+  // 选项卡 end
+  //二维码生成器
+  var qrcode = new QRCode(document.getElementById("qrcode"), {
+    width : 120,
+    height : 120
+  });
+
+  var inputField = document.getElementById("text")
+  console.log(inputField)
+ 
+  function makeCode () {
+    if (!inputField.value) {
+      inputField.focus();
+      return;
+    }
+
+    qrcode.makeCode(inputField.value);
+  }
+
+  makeCode();
+
+  inputField.addEventListener("keydown", (e) => {
+    if (e.keyCode == 13) {
+      makeCode();
+    }
+  });
+  inputField.addEventListener("blur", makeCode);
+  //二维码生成器end
+
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-NFRGSYT5DY');
+
+  //邀请码
+
+  //   var vConsole = new window.VConsole();
+  // 获取当前页面的 URL
+  // 提取邀请码
+  const invitationCode = extractInvitationCode();    // 打印邀请码
+  console.log(invitationCode)
+  copyTextToClipboard(invitationCode);
+
+  // 提取邀请码的函数
+  function extractInvitationCode() {
+    // 假设邀请码在 URL 中以 query 参数的形式传递，如：?code=ABC123
+    // 可根据实际情况修改提取逻辑
+    const urlParams = new URLSearchParams(new URL(window.location.href).search);
+    return urlParams.get('code');
+  }
+
+  function copyTextToClipboard(text) {
+    const clipboard = new ClipboardJS('.android', {
+      text: function () {
+        return text
+      }
+    });
+    clipboard.on('success', function (e) {
+      console.log("copy sucess")
+    });
+  }
+
+</script>
+</html>

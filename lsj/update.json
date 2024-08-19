@@ -1,0 +1,10 @@
+{
+    "code": 200,
+    "data": {
+        "versionCode":6,
+        "versionName":"1.2.1",
+        "forceUpdate":true,
+        "apkUrl":"https://154.88.15.99/app_v1_20231009.apk"
+    },
+    "success": true
+}
