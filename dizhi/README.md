@@ -8,7 +8,7 @@
 
 回家地址 1.3 → http://HuiJiaDiZhi.top
 
-https://xindizhi.github.io/dizhi/
+https://zuixindizhi007.github.io/dizhi/
 
 https://github.com/xindizhi/xindizhi.github.io/tree/main/dizhi/
 

@@ -4,7 +4,7 @@ http://dianying.in
 
 http://dianying.im
 
-https://xindizhi.github.io/dyxs/
+https://zuixindizhi007.github.io/dyxs/
 
 https://github.com/xindizhi/xindizhi.github.io/tree/main/dyxs/
 
