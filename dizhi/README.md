@@ -16,18 +16,3 @@ https://bitbucket.org/xindizhi.bitbucket.io/dizhi/
 
 https://xindizhi.bitbucket.io/dizhi/
 
-
-# 最新地址
-http://dizhi21.xyz
-
-http://dizhi20.xyz
-
-http://dizhi19.xyz
-
-http://dizhi18.xyz
-
-http://dizhi17.xyz
-
-http://dizhi16.xyz
-
-http://dizhi15.xyz
